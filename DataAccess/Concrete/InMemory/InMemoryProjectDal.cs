@@ -18,11 +18,11 @@ namespace DataAccess.Concrete.InMemory
         {
             _cars = new List<Car>() 
             { 
-                new Car{CarId=1,BrandId=1,ColorId=1,ModelYear=1999,DailyPrice=120000,Description="Hastasına"},
-                new Car{CarId=2,BrandId=2,ColorId=1,ModelYear=2005,DailyPrice=250000,Description="Acil"},
-                new Car{CarId=3,BrandId=2,ColorId=3,ModelYear=2010,DailyPrice=300000,Description="Temiz"},
-                new Car{CarId=4,BrandId=1,ColorId=1,ModelYear=2017,DailyPrice=780000,Description="Otomatik"},
-                new Car{CarId=5,BrandId=3,ColorId=2,ModelYear=2024,DailyPrice=1800000,Description="LPG mevcut"},
+                new Car{CarId=1,BrandId=1,ColorId=1,CarName="BMW",ModelYear=1999,DailyPrice=120000,CarDescription="Hastasına"},
+                new Car{CarId=2,BrandId=2,ColorId=1,CarName="Mercedes",ModelYear=2005,DailyPrice=250000,CarDescription="Acil"},
+                new Car{CarId=3,BrandId=2,ColorId=3,CarName="Toyota",ModelYear=2010,DailyPrice=300000,CarDescription="Temiz"},
+                new Car{CarId=4,BrandId=1,ColorId=1,CarName="Ford",ModelYear=2017,DailyPrice=780000,CarDescription="Otomatik"},
+                new Car{CarId=5,BrandId=3,ColorId=2,CarName="Fiat",ModelYear=2024,DailyPrice=1800000,CarDescription="LPG mevcut"},
             };
         }
 
@@ -62,9 +62,10 @@ namespace DataAccess.Concrete.InMemory
             Car carToUpdate =_cars.SingleOrDefault(p=>p.CarId == car.CarId);
             carToUpdate.BrandId = car.BrandId;
             carToUpdate.ColorId = car.ColorId;
+            carToUpdate.CarName = car.CarName;
             carToUpdate.ModelYear = car.ModelYear;
             carToUpdate.DailyPrice = car.DailyPrice;
-            carToUpdate.Description = car.Description;
+            carToUpdate.CarDescription = car.CarDescription;
         }
     }
 }
