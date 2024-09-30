@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -19,24 +21,34 @@ namespace Business.Concrete
             _ICarDal = carDal;
         }
 
-        public List<Car> GetAll()
+        public IResult Add(Car car)
         {
-            return _ICarDal.GetAll();
+            throw new NotImplementedException();
         }
 
-        public List<Car> GetCarsByBrandId(int id)
+        public IDataResult<List<Car>> GetAll()
         {
-            return _ICarDal.GetAll(c => c.BrandId == id);
+            if (DateTime.Now.Hour == 23)
+            {
+                return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
+            }
+
+            return new SuccessDataResult<List<Car>>(_ICarDal.GetAll(), Messages.CarsListed);
         }
 
-        public List<Car> GetCarsByColorId(int id)
+        public IDataResult<CarDetailDto> GetCarDetails()
         {
-            return _ICarDal.GetAll(c => c.ColorId == id);
+            throw new NotImplementedException();
         }
 
-        public List<CarDetailDto> GetCarDetails()
+        public IDataResult<Car> GetCarsByBrandId(int id)
         {
-            return _ICarDal.GetCarDetails();
+            throw new NotImplementedException();
+        }
+
+        public IDataResult<Car> GetCarsByColorId(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
