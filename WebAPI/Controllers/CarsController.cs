@@ -19,7 +19,7 @@ namespace WebAPI.Controllers
             _carService = carService;
         }
 
-        [HttpGet()]
+        [HttpGet("getall")]
         public IActionResult GetAll()
         {
             //Swagger
