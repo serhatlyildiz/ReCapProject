@@ -13,22 +13,22 @@ namespace Core.DataAccess.EntityFramework
         where TEntity : class, IEntity ,new()
         where TContext : DbContext, new()
     {
-        public void Add(TEntity entitiy)
+        public void Add(TEntity entity)
         {
             using (TContext context = new TContext())
             {
-                var addedEntitiy = context.Entry(entitiy);
-                addedEntitiy.State = EntityState.Added;
+                var addedEntity = context.Entry(entity);
+                addedEntity.State = EntityState.Added;
                 context.SaveChanges();
             }
         }
 
-        public void Delete(TEntity entitiy)
+        public void Delete(TEntity entity)
         {
             using (TContext context = new TContext())
             {
-                var deletedEntitiy = context.Entry(entitiy);
-                deletedEntitiy.State = EntityState.Deleted;
+                var deletedEntity = context.Entry(entity);
+                deletedEntity.State = EntityState.Deleted;
                 context.SaveChanges();
             }
         }
@@ -43,20 +43,20 @@ namespace Core.DataAccess.EntityFramework
 
         public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
         {
-            using (TContext contex = new TContext())
+            using (TContext context = new TContext())
             {
                 return filter == null
-                    ? contex.Set<TEntity>().ToList()
-                    : contex.Set<TEntity>().Where(filter).ToList();
+                    ? context.Set<TEntity>().ToList()
+                    : context.Set<TEntity>().Where(filter).ToList();
             }
         }
 
-        public void Update(TEntity entitiy)
+        public void Update(TEntity entity)
         {
             using (TContext context = new TContext())
             {
-                var updatedEntitiy = context.Entry(entitiy);
-                updatedEntitiy.State = EntityState.Modified;
+                var updatedEntity = context.Entry(entity);
+                updatedEntity.State = EntityState.Modified;
                 context.SaveChanges();
             }
         }
